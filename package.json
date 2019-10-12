@@ -1,0 +1,16 @@
+{
+  "name": "mod4",
+  "version": "1.0.0",
+  "description": "My First ToDo List Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Hamza",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.7.4",
+    "nodemon": "^1.19.3"
+  }
+}
