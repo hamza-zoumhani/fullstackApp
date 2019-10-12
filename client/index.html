@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDo List Application</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+        </script>
+</head>
+
+<body>
+    <h1>List of things to do:</h1>
+    <ul class="todolist"></ul>
+    <div class="addNew">
+        <input type="text" id="newTask" placeholder="Type Task..."></input>
+        <button type="button" onclick="AddTask()">Add Task</button>
+    </div>
+    <script>
+        function AddTask() {
+            //use jquery to fill {}
+            $.post('/todo/add', {}).done(function() {
+                console.log($('#newTask').val());
+                $('#newTask').val("");
+                reloadPage();
+            });
+        }
+        function reloadPage() {
+            $.getJSON("/todo/all", function(data) {
+                data.forEach(function (item, index) {
+                    $(".todolist").append("<li>" + item.task + "</li>");
+                })
+            });
+        }
+        $(document).ready(function() {
+            reloadPage();
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>
