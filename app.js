@@ -24,8 +24,8 @@ db.once('open', function(){
 
 app.use('/', express.static('files'));
 app.get('/todo/all', function(req, res){
-    todo.find({}).exec(function(err, data))
-    res.json(data);
+    todo.find({}).exec(function(err, data){
+    res.json(data);})
 });
 
 app.listen(3000, function(){
