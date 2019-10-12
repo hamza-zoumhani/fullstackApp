@@ -1,6 +1,28 @@
-var express = require('express')
+var express = require('express');
+var mongoose=require('mongoose');
 var app=express()
+
+//DB STUFF
+mongoose.connect('mongodb://localhost/todo');
+
+var taskSchema=mongoose.Schema({
+    task: String
+});
+
+var todo=mongoose.model('tasks', taskSchema);
+var db = mongoose.connection;
+
+db.on('error', function(msg){
+    console.log("Mongoose Error db todo" + msg);
+});
+
+db.once('open', function(){
+    console.log("Mongoose connected to todo");
+});
+
+app.use('/', express.static('files'));
 
 app.listen(3000, function(){
     console.log("Express running on port: 3000");
 });
+
