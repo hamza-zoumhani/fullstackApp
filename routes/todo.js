@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var router = express.Router();
 var todo = require('../models/todo');
 
-router.use(express.json()):
+router.use(express.json());
 mongoose.connect('mongodb://localhost/todo');
 
 var db = mongoose.connection;
